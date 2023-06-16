@@ -8,8 +8,16 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'));
 //E:\Web\project\views\gym\my_model\model.json
 
-app.use('/gym', express.static(__dirname + '/views/gym'));
+app.use('/gym', express.static(__dirname + '/views/gym')); //하체
+app.use('/pushup', express.static(__dirname + '/views/pushup')); //상체
+app.use('/burpeetest', express.static(__dirname + '/views/burpeetest')); //전신운동
+app.use('/runup', express.static(__dirname + '/views/runup'));
+app.use('/kick', express.static(__dirname + '/views/kick'));
+app.use('/wallkick', express.static(__dirname + '/views/wallkick'));
 
+app.use('/underhand', express.static(__dirname + '/views/underhand'));
+app.use('/overhand', express.static(__dirname + '/views/overhand'));
+app.use('/serve', express.static(__dirname + '/views/serve'));
 //let comments = [];
 const { Sequelize, DataTypes } = require('sequelize');
 //const sequelize = new Sequelize('sqlite::memory:');
@@ -149,6 +157,127 @@ app.post('/login', async function(req, res) {
 
 });
 
+
+
+app.get('/health', (req,res) => {
+  const id = req.query.id 
+  const student_id = req.query.student_id
+  //console.log("health")
+  //console.log(id)
+  //console.log(student_id)
+
+  //health?student_id=<%= student_id %>&id=<%= id %>
+
+  res.render('health',{ student_id: student_id , id:id});
+});
+
+app.get('/gymnastic', (req,res) => {
+  const id = req.query.id 
+  const student_id = req.query.student_id
+  //console.log("health")
+  //console.log(id)
+  //console.log(student_id)
+
+  //health?student_id=<%= student_id %>&id=<%= id %>
+
+  res.render('gymnastic',{ student_id: student_id , id:id});
+});
+
+app.get('/volleyball', (req,res) => {
+  const id = req.query.id 
+  const student_id = req.query.student_id
+  //console.log("health")
+  //console.log(id)
+  //console.log(student_id)
+
+  //health?student_id=<%= student_id %>&id=<%= id %>
+
+  res.render('volleyball',{ student_id: student_id , id:id});
+});
+
+app.get('/gymPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('gym/gymPage',{student_id: student_id , id:id});
+});
+
+app.get('/pushupPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('pushup/pushupPage',{student_id: student_id , id:id});
+});
+
+app.get('/burpeetestPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('burpeetest/burpeetestPage',{student_id: student_id , id:id});
+});
+
+app.get('/runupPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('runup/runupPage',{student_id: student_id , id:id});
+});
+
+app.get('/kickPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('kick/kickPage',{student_id: student_id , id:id});
+});
+
+app.get('/wallkickPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('wallkick/wallkickPage',{student_id: student_id , id:id});
+});
+
+app.get('/underhandPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('underhand/underhandPage',{student_id: student_id , id:id});
+});
+
+app.get('/overhandPage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('overhand/overhandPage',{student_id: student_id , id:id});
+});
+
+app.get('/servePage', (req,res) => {
+  const id = req.query.id ;
+  //const index_id = req.body.index_id ;
+  const student_id = req.query.student_id
+  
+  
+  res.render('serve/servePage',{student_id: student_id , id:id});
+});
+
+
+//모든저장은 여기로  저장
 app.post('/sqartsave', async function(req, res) {
   //res.send('Post-hi')
   //console.log(req.body)
@@ -156,11 +285,11 @@ app.post('/sqartsave', async function(req, res) {
   const sports_reps = req.body.sports_reps
   const student_id = req.body.student_id
   const id = req.body.id
-  console.log(sports_event)
-  console.log(sports_reps)
-  console.log("sqartsave")
-  console.log(student_id)
-  console.log(id)
+  //console.log(sports_event)
+  //console.log(sports_reps)
+  //console.log("sqartsave")
+  //console.log(student_id)
+  //console.log(id)
 
   
   await Comments.update(
@@ -176,28 +305,6 @@ app.post('/sqartsave', async function(req, res) {
   //await Comments.create({ content: content });
   res.redirect('/')
 
-});
-
-
-app.get('/gymPage', (req,res) => {
-  const id = req.query.id ;
-  //const index_id = req.body.index_id ;
-  const student_id = req.query.student_id
-  
-  
-  res.render('gym/gymPage',{student_id: student_id , id:id});
-});
-
-app.get('/health', (req,res) => {
-  const id = req.query.id 
-  const student_id = req.query.student_id
-  //console.log("health")
-  //console.log(id)
-  //console.log(student_id)
-
-  //health?student_id=<%= student_id %>&id=<%= id %>
-
-  res.render('health',{ student_id: student_id , id:id});
 });
 
 
